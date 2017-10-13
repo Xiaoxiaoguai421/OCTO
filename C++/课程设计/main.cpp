@@ -1,0 +1,74 @@
+/*************************************************************************
+	> File Name: main.cpp
+	> Author: Guangze Zhu 
+	> Mail: xiaoxiaoguai421@gmail.com 
+	> Created Time: 2017年09月05日 星期二 14时06分58秒
+ ************************************************************************/
+
+#include<iostream>
+#include<fstream>
+#include<string>
+#include"vote.h"
+int main()
+{
+	candidate Cand[5];
+	int count = 0;
+	int root = 0;
+	cout << "********************vote system********************" << endl;
+	read(Cand ,count);
+	cout << "      Enter 1 for administrator or 2 to vote       " << endl;
+	cin >> root;
+	/*管理者*/
+	while (root == 1 && check())
+	{
+		int choose;
+		cout << "设置候选人信息：1" << endl;
+		cout << "显示选举状态  ：2" << endl;
+		cout << "退出          ：0" << endl;
+		cin >> choose;
+		switch (choose)
+		{
+		case 1:
+			for (int i = 0; i < 5; i++)
+				Cand[i].setinfo();
+			save(Cand,count);
+			break;
+		case 2:
+			sort(Cand);
+			display(Cand,count);
+			break;
+		case 0:
+			root = 0;
+			break;
+		}
+	}
+	/*选民 */
+	while (root == 2)
+	{
+		int choose;
+		string str = "未投票";  //投票人状态
+		if( str == "未投票" )
+			cout << "投票          ：1" << endl;
+		cout << "查询候选人    ：2" << endl;
+		cout << "退出          ：0" << endl;
+		cout << "当前状态:" << str << "当前投票人数：" << count << endl;
+		cin >> choose;
+		switch (choose)
+		{
+		case 1:
+			vote(Cand);
+			count++;
+			save(Cand, count);
+			str = "已投票";
+			break;
+		case 2:
+			select(Cand);
+			break;
+		case 0:
+			root = 0;
+			break;
+		}
+	}
+	cout << "*******************谢谢使用本系统*******************" << endl;
+	return 0;
+}
