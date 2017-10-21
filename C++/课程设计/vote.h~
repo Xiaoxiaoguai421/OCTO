@@ -4,6 +4,7 @@
 	> Mail: xiaoxiaoguai421@gmail.com 
 	> Created Time: 2017年09月05日 星期二 13时56分29秒
  ************************************************************************/
+
 #ifndef _VOTE_H
 #define _VOTE_H
 #include<iostream>

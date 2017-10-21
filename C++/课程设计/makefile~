@@ -1,6 +1,6 @@
 main:  main.o vote.o
 	g++ -o main.o	vote.o
-main.o: main.cpp	vote.h
+main.o: main.cpp
 	g++ -c main.cpp
 vote.o: vote.cpp vote.h
 	g++ -c vote.cpp
