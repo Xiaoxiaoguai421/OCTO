@@ -1,0 +1,38 @@
+#写一些Ubuntu里使用Github时遇到的问题和解决方案
+
+【一】Ubuntu下通过git连接Github
+1.安装/设置git
+ #下载
+    $: sudo apt-get install git
+ #设置
+    $: git config --global user.name "Guangze"   "设置用户名 Guangze，自己随意换
+    $: git config --global user.email "19463810@qq.com"  "设置用户邮箱，换自己邮箱
+    $: git config --global core.editor vim   "设置vim文本编辑器
+    $: git config --list "显示配置信息
+2.生成SSH，并获得github权限
+ #下载
+    $: sudo apt-get install ssh
+ #是否已有ssh key
+    $: ls -al ~/.ssh
+ #生成SSH key
+    $: ssh-keygen -t rsa -C"194463810@qq.com"
+    $: cat /home/llgreen/.ssh/id_rsa.pub     "根据生成ssh提示id_rsa.pub的路径获取公钥,一般在 /home/llgreen/.ssh/id_rsa.pub
+ #复制添加public key到github里
+ #测试SSH 是否成功添加
+    $: ssh -T github.com:Xiaoxiaoguai421/OCTO   "github.com:Xiaoxiaoguai421/OCTO 是你连的github仓库地址
+3.clone仓库
+    $: git clone github.com/Xiaoxiaoguai421/OCTO.git      "末尾的.git不要忘了
+
+【二】Ubuntu下git的一般用法(命令）
+    $: git status    "查看当前状态
+    $: git add * "添加所有改动，*是通配符
+    $: git commit -m "提交说明"  "清空缓存
+    $: git push  "推进远端仓库
+    $: git pull  "从远端仓库拉东西到本地
+
+"  在每次使用git push的时候都需要输入用户和密码，是不是觉得很麻烦，为了提高效率,我们可以不需要输入密码就直接提交
+"  Github获取远程库时，有ssh方式和https方式
+"  两个方式的url地址不同，认证方式也不同。使用ssh时保存密钥对以后可以不再输入帐号密码，而https却不能。
+"  所以如果想要不再输入帐号密码，一种方式就是在git clone的时候使用ssh方式,另一种方式就是改变remote远程url
+    $: git remote rm origin  
+    $: git remote add origin git@github.com:Xiaoxiaoguai421/OCTO.git
