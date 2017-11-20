@@ -1,0 +1,15 @@
+digraph G{
+	label="图3.1 删除子串";
+	{
+		node[shape=plaintext];
+		"源串";"新串";
+	}
+	node [shape=record,height=.1];
+	node0[label = "<f0> |<f1> |<f2> pattern|<f3> ...|<f4> pattern|<f5> ..."];
+	node1[label = "<f0> |<f1> |<f2> ..."];
+	"node0":f0 -> "node1":f0;
+	"node0":f1 -> "node1":f1;
+	"node0":f3 -> "node1":f2;
+	{rank=same;"源串";node0;}
+	{rank=same;"新串";node1;}
+}
