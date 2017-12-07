@@ -1,0 +1,9 @@
+digraph G{
+	label="矩阵相乘";
+	node[shape=record];
+	A[label="{<f0> A.triList | {r |<here> c |elem } |{0|<here> 0|<f1> 1} | {0|<here> 1|<f2> 2} | ...}"];
+	B[label="{<f3> B.triList | {r |<here> c |elem } |{0|<here> 0|<f4> 1} | ... | ...}"];
+	C[label="{<f5> reList | {r|<here> c|elem} |{0|<here> 0|<f6> 1} | ...| ...}"];
+A:f1->B:f4;
+B:f4->C:f6;
+}
