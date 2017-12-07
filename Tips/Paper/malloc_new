@@ -1,0 +1,19 @@
+											试比较malloc()、free()和new、delete
+写在前面：
+		malloc()/free()是C/C++标准库函数,new/delete是C++运算符,两者都可以动态申请内存和释放动态内存。
+1.malloc()/free()
+  void *malloc(int size);	void free(void *FirstByte);
+  malloc()从堆空间中申请内存（不识别申请类型，只关心内存的总字节输），返回的void*指针指向堆里的一块内存，在使用时常在前面进行
+  强制类型转换（可用来躲过一些编译器的检查）。
+PS：操作系统中有一个记录空闲内存地址的链表。当操作系统收到程序的申请时，就会遍历该链表。然后寻找第一个空间大于所申请空间的堆结点，
+    然后就将该节点从空闲节点链表中删除，并将该节点的空间返回给程序。
+2.new/delete
+  new：获得一块内存空间，调用构造函数，返回正确的指针。【参考http://blog.jobbole.com/106767/】
+  delete：调用析构函数关闭文件，调用标准库函数中的operater delete释放对象内存。【参考http://www.cnblogs.com/hazir/p/new_and_delete.html】
+  operator new 和operator delete【参考https://kelvinh.github.io/blog/2014/04/19/research-on-operator-new-and-delete/】
+3.不同点
+ (1).new返回指定类型的指针，并且可以自动计算所需大小；malloc()需要人工计算所需字节数，返回void*。
+ (2).new是类型安全，malloc()不是。
+ (3).malloc()不对申请的空间进行初始化，新内存中的值是随机的；new调用了构造函数。
+ (4).malloc/free是库函数，不在编译器的控制范围；new/delete是运算符
+ (5).free不能释放new创建的动态对象(free无法调用析构函数),delete可以释放malloc申请的空间(不常用)，通常malloc/free,new/delete搭配使用。
