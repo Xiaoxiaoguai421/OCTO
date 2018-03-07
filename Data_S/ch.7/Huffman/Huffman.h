@@ -10,6 +10,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<algorithm>
 using namespace std;
 struct HuffmanNode
 {
@@ -17,13 +18,15 @@ struct HuffmanNode
 	double weight;
 	int parent, lchild, rchild;
 };
+
 class HuffmanTree
 {
 public:
-	HuffmanTree(Vector<HuffmanNode> &leafs);
-	~HuffmanTree();
-	vector<int> GetCode(int i);
+	HuffmanTree( vector<HuffmanNode> &leafs );
+	~HuffmanTree() {};
+	string GetCode(int i);
 	string Decode(vector<int> &source);
+	void Print();
 private:
 	vector<HuffmanNode> hufftree;
 	int n;
