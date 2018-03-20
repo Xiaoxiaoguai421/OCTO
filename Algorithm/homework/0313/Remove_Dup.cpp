@@ -1,5 +1,5 @@
 /*************************************************************************
-    > File Name: MergeSort.cpp
+    > File Name: Remove_Dup.cpp
     > Author: GZ
     > Mail: 194463810@qq.com
     > Created Time: 2018年03月13日 星期二 18时44分15秒
@@ -7,22 +7,19 @@
 
 #include<iostream>
 #include<queue>
-#include<time.h>
-#include<stdlib.h>
 using namespace std;
-const int MaxSize = 5;
+int MaxSize = 6;
+void Remove_Dup(int s[], int &length);
 void Merge(int s[], int low, int middle, int high);
 void MergeSort(int s[], int low, int high);
 int main(void)
 {
 	int r[MaxSize];
-	srand(time(NULL));
+	cout << "请输入" << MaxSize << "个数：\n$:";
 	for (int i = 0; i < MaxSize; i++)
-		r[i] = rand();
-	for (int i = 0; i < MaxSize; i++)
-		cout << r[i] << '\t';
-	cout << endl;
-	MergeSort(r, 0, MaxSize - 1);
+		cin >> r[i];
+	Remove_Dup(r, MaxSize);
+	cout << "删除重复值后" << endl;
 	for (int i = 0; i < MaxSize; i++)
 		cout << r[i] << '\t';
 	cout << endl;
@@ -30,6 +27,29 @@ int main(void)
 }
 
 /*使用队列*/
+void Remove_Dup(int s[], int &length)
+{
+	int i = 0;
+	int count = 0;
+	MergeSort(s, 0, length - 1);
+	queue<int> buffer;
+	for (i = 0; i < length - 1; i++)
+	{
+		if (s[i] != s[i + 1])
+			buffer.push(s[i]);
+		else
+			count++;
+	}
+	buffer.push(s[i]);
+	i = 0;
+	while (!buffer.empty())
+	{
+		s[i++] = buffer.front();
+		buffer.pop();
+	}
+	length = length - count;
+}
+
 void MergeSort(int s[], int low, int high)
 {
 	int middle;

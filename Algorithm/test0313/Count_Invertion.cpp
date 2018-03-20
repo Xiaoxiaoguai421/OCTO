@@ -1,13 +1,14 @@
 /*************************************************************************
-    > File Name: Count_Key.cpp
+    > File Name: Count_Invertion.cpp
     > Author: GZ
     > Mail: 194463810@qq.com
     > Created Time: 2018年03月13日 星期二 18时44分15秒
-	归并后，按从大到小顺序排列
  ************************************************************************/
 
 #include<iostream>
 #include<queue>
+#include<time.h>
+#include<stdlib.h>
 using namespace std;
 const int MaxSize = 5;
 void Merge(int s[], int low, int middle, int high, int &cnt);
@@ -20,7 +21,8 @@ int main(void)
 		cin >> r[i];
 	int count = 0;
 	MergeSort(r, 0, MaxSize - 1, count);
-	cout << "重要逆序对个数为：" << count << endl;
+	cout << "逆序数为：" << count << endl;
+	cout << endl;
 	return 0;
 }
 
@@ -39,21 +41,6 @@ void MergeSort(int s[], int low, int high, int &cnt)
 
 void Merge(int s[], int low, int middle, int high, int &cnt)
 {
-	/*Count Key*/
-	int l = low;
-	int m = middle + 1;
-	while (l <= low && m <= high)
-	{
-		if (s[l] > 2 * s[m])
-		{
-			cnt += high-m+1;
-			l++;
-		}
-		else
-			m++;
-	}
-
-	/*Merge*/
 	int i;
 	queue<int> buffer1;
 	queue<int> buffer2;
@@ -64,13 +51,14 @@ void Merge(int s[], int low, int middle, int high, int &cnt)
 	i = low;
 	while (!(buffer1.empty() || buffer2.empty()))
 	{
-		if (buffer1.front() >= buffer2.front())
+		if (buffer1.front() <= buffer2.front())
 		{
 			s[i++] = buffer1.front();
 			buffer1.pop();
 		}
 		else
 		{
+			cnt += buffer1.size();
 			s[i++] = buffer2.front();
 			buffer2.pop();
 		}
