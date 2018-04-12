@@ -58,6 +58,7 @@ class Student{
 ~~~
 
 2.  java中传参只有传值
-	java中所有对象变量都是对象的引用
-参考：[java中的经典问题：传值与传引用](https://blog.csdn.net/jiangnan2014/article/details/22944075)
 
+    java中所有对象变量都是对象的引用
+    
+    参考：[java中的经典问题：传值与传引用](https://blog.csdn.net/jiangnan2014/article/details/22944075)
