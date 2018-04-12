@@ -17,8 +17,10 @@ public class Rectangle{
 解释：静态(static)方法、变量存在与对象之前。static为类所有，该类实例化的所有对象均可共用，即static在栈中开辟固定空间，而非静态在堆中开辟空间，彼此独立。
 
 2. 一个文件夹下有1.java、2.java、...、main.java、n.java等类，其中只有main.java为可执行的类,无需使用import
+
 编译
 > javac \*.java
+
 运行
 > java main
 
