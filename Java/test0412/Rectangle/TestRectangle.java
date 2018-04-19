@@ -4,7 +4,7 @@
     > Mail: 194463810@qq.com
     > Created Time: 2018年04月12日 星期四 10时56分08秒
  ************************************************************************/
-import java.util.*;
+import java.util.Scanner;
 
 public class TestRectangle {
 

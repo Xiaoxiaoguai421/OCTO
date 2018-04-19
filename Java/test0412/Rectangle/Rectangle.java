@@ -9,12 +9,12 @@ public class Rectangle {
 	int length;
 	int height;
 
-	public void set_length(int l) {
-		length = l;
+	public void set_length(int l){
+			length = l;
 	}
 
-	public void set_height(int h) {
-		this.height = h;
+	public void set_height(int h)throws Excption {
+			this.height = h;
 	}
 
 	public int getArea() {
