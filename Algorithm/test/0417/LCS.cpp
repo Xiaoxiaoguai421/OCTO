@@ -11,6 +11,7 @@
 using namespace std;
 void Print_LCS(vector<vector<int> > D, const char *x, int i, int j);
 void LCS(string x, string y);
+void LCS_length(string x, string y);
 int main(void)
 {
 	string str1;
@@ -18,6 +19,7 @@ int main(void)
 	cout << "请输入两端字符串" << endl;
 	cin >> str1 >> str2;
 	LCS(str1, str2);
+	LCS_length(str1, str2);
 	return 0;
 }
 
@@ -58,7 +60,7 @@ void LCS(string x, string y)
 	for (int i = 1; i <= n; i++)
 		for (int j = 1; j <= m; j++)
 		{
-			if (s1[i-1] == s2[j-1])
+			if (s1[i - 1] == s2[j - 1])
 			{
 				L[i][j] = L[i - 1][j - 1] + 1;
 				D[i][j] = 0;
@@ -78,4 +80,34 @@ void LCS(string x, string y)
 	cout << "最大公共子串为：";
 	Print_LCS(D, s1, n, m);
 	cout << endl;
+}
+
+void LCS_length(string x, string y)
+{
+	const char *s1 = x.data();
+	const char *s2 = y.data();
+	int n = x.length();
+	int m = y.length();
+	vector<vector<int> > L(2);
+	for (int i = 0; i < 2; i++)
+		L[i].resize(m + 1);
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j <= m; j++)
+			L[i][j] = 0;
+	int index_now = 0;
+	int index_pre = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (s1[i] == s2[j])
+				L[index_now][j + 1] = L[index_pre][j] + 1;
+			else    L[index_now][j + 1] = (L[index_now][j] > L[index_pre][j + 1]) ? L[index_now][j] : L[index_pre][j + 1];
+		}
+		//滚动
+		int temp = index_now;
+		index_now = index_pre;
+		index_pre = temp;
+	}
+	cout << "滚动数组求最长公共子序列的长度：" << L[index_now][m] << endl;
 }
