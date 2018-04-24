@@ -8,7 +8,7 @@
 
 设L[i][j]表示x[1...i]与y[1...j]的最长公共子序列长度，则DP递推式:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=L(i,j)=\left\{\begin{matrix}&space;&&space;1&plus;L(i-1,j-1),x[i]=y[j]\\&space;&&space;max(L(i-1,j),L(i,j-1)),x[i]\not\equiv&space;y[j]\\&space;\end{matrix}\right." target="_blank"><img src="https://latex.codecogs.com/gif.latex?L(i,j)=\left\{\begin{matrix}&space;&&space;1&plus;L(i-1,j-1),x[i]=y[j]\\&space;&&space;max(L(i-1,j),L(i,j-1)),x[i]\not\equiv&space;y[j]\\&space;\end{matrix}\right." title="L(i,j)=\left\{\begin{matrix} & 1+L(i-1,j-1),x[i]=y[j]\\ & max(L(i-1,j),L(i,j-1)),x[i]\not\equiv y[j]\\ \end{matrix}\right." /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=L(i,j)=\left\{\begin{matrix}&space;&&space;1&plus;L(i-1,j-1),x[i]=y[j]\\&space;&&space;max(L(i-1,j),L(i,j-1)),x[i]\neq&space;y[j]\\&space;\end{matrix}\right." target="_blank"><img src="https://latex.codecogs.com/gif.latex?L(i,j)=\left\{\begin{matrix}&space;&&space;1&plus;L(i-1,j-1),x[i]=y[j]\\&space;&&space;max(L(i-1,j),L(i,j-1)),x[i]\neq&space;y[j]\\&space;\end{matrix}\right." title="L(i,j)=\left\{\begin{matrix} & 1+L(i-1,j-1),x[i]=y[j]\\ & max(L(i-1,j),L(i,j-1)),x[i]\neq y[j]\\ \end{matrix}\right." /></a>
 
 若需要输出最长公共子序列，可用表D[][]记录每次选择，递归输出最长公共子序列
 
