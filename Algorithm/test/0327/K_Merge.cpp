@@ -24,11 +24,16 @@ void K_Merge(vector<vector<int> > s,int k)
 
 void Merge(vector<int> a,vector<int> b)
 {
-	queue<int> buffer1;
-	queue<int> buffer2;
-	for(int i=0;i<a.size();i++)
-		buffer1.push_back(a[i]);
-	for(int i=0;i<b.size();i++)
-		buffer2.push_back(b[i]);
-	while()
+	queue<int> buffer;
+	int len_a=a.size();
+	inr len_b=b.size();
+	while(len_a>=0&&len_b>=0)
+	{
+		if(a[len_a]>=b[len_b])	buffer.push_back(b[len_b--]);
+		else	buffer.push_back(a[len_a--]);
+	}
+	while(len_a>=0)
+		buffer.push_back(a[len_a--]);
+	while(len_b>=0)
+		buffer,push_back(b[len_b]);
 }
