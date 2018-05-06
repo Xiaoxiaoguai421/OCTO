@@ -20,4 +20,28 @@ index\_pre即i-1，index\_now即i
 2. 0-1背包问题
 【问题描述】
 给定n种物品和一背包。物品i的重量是wi，其价值为vi，背包的容量为W（假定物品重量与背包容量值均为整数），应如何选择装入背包中的物品，使得装入背包中物品的总价值最大？设计一个动态规划算法，求解背包问题。
+设L(w,i)，DP方程为
+<a href="https://www.codecogs.com/eqnedit.php?latex=L(w,i)=\left\{\begin{matrix}&space;&&space;0,i=0&space;\&space;or&space;\&space;w=0\\&space;&&space;L(w,i-1),w_{i}>w\\&space;&&space;max(&space;L(w,i-1),L(w-w_{i},i-1)&plus;p_{i}),otherwise\\&space;\end{matrix}\right." target="_blank"><img src="https://latex.codecogs.com/gif.latex?L(w,i)=\left\{\begin{matrix}&space;&&space;0,i=0&space;\&space;or&space;\&space;w=0\\&space;&&space;L(w,i-1),w_{i}>w\\&space;&&space;max(&space;L(w,i-1),L(w-w_{i},i-1)&plus;p_{i}),otherwise\\&space;\end{matrix}\right." title="L(w,i)=\left\{\begin{matrix} & 0,i=0 \ or \ w=0\\ & L(w,i-1),w_{i}>w\\ & max( L(w,i-1),L(w-w_{i},i-1)+p_{i}),otherwise\\ \end{matrix}\right." /></a>
 
+~~~
+
+//base case
+for (int i = 0; i < w + 1; i++)
+    a[i][0] = 0;
+for (int i = 0; i < n + 1; i++)
+    a[0][i] = 0;
+//for
+for (int i = 1; i < w + 1; i++) {
+    for (int j = 1; j < n + 1; j++) {
+        if (i < weight[j - 1]) //当前背包重量小于物品，不装
+        {
+            a[i][j] = a[i][j - 1];
+        } else {
+            if (a[i][j - 1] <= a[i - weight[j - 1]][j - 1] + price[j - 1]) {
+                a[i][j] = a[i - weight[j - 1]][j - 1] + price[j - 1];
+            } else
+                a[i][j] = a[i][j - 1];
+                }                                                                                                                        
+}
+
+~~~
