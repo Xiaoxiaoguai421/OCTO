@@ -1,3 +1,7 @@
 # OCTO
-伪程序员，一只学渣
-爱好开源，共同学习
+
+懒
+
+我的BLog： www.zhuguangze.com
+
+喜欢折腾，共同学习
