@@ -10,6 +10,27 @@ import java.io.*;
 public class Test {
     public static void main(String[] args) {
 
+        try {
+            FileReader fr = new FileReader("data.txt");
+            BufferedReader br = new BufferedReader(fr);
+            FileWriter fw = new FileWriter("target.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            String strLine;
+            while (br.ready()) {
+                strLine = br.readLine();
+                bw.write(strLine);
+                bw.newLine();
+                System.out.println(strLine);
+            }
+            bw.flush(); //刷新缓冲，将流输出到目的
+            bw.close();
+            br.close();
+            fw.close();
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         /*
         char[] c = new char[512];
