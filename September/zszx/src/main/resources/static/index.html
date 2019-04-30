@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<script src="js/jquery-1.10.1.js"></script>
+<script>
+    $(function(){
+        $('.textSent').click(function(){
+            var str=$('#val').val();
+            var html='<div class="npcTalkItem clearFix border-right" > ' +
+                    '<div class="npcTalkImg fr"> ' +
+                    '<img src="img/1.jpg" alt="头像"> ' +
+                    '</div> ' +
+                    '<div class="npcTalk fr" > ' +
+                    '<div class="npcTalkCon" >' +
+                    str+' </div> </div> </div>';
+                     $('.npcTalklist').append(html);
+                    $('#val').val('');
+            var obj={open_id:"123456",type:"text",content:str};
+        });
+    })
+
+function sent()
+    {
+    	$.ajax({
+          url: '/njnu_zs',
+          type: 'POST',
+          data:{a:$('#val').val()},//JSON.stringify(obj),
+         // contentType: "application/json; charset=utf-8",
+          //dataType: "json",
+          success: function (data) {
+              console.log(data);
+              var str='<div class="npcTalkItem clearFix border-left" > ' +
+                   '<div class="npcTalkImg fl"> ' +
+                   '<img src="img/2.jpg" alt="头像"> ' +
+                   '</div> ' +
+                   '<div class="npcTalk fl" > ' +
+                   '<div class="npcTalkCon" >' +
+                   data +
+                   '</div> ' +
+                   '</div> ' +
+                   '</div>';
+              $('.npcTalklist').append(str);
+              console.log(data);
+          },
+          error: function (xhr, errorType, error) {
+              console.log(error);
+          }
+          })
+    }
+    
+</script>
+<div class="talkTitle">招生小助手</div>
+<div class="npcTalklist">
+    <div class="npcTalkItem clearFix border-right" >
+        <div class="npcTalkImg fr">
+            <img src="img/1.jpg" alt="头像">
+        </div>
+        <div class="npcTalk fr" >
+            <div class="npcTalkCon" >
+               NNU,你好！
+            </div>
+        </div>
+    </div>
+    <div class="npcTalkItem clearFix border-left" >
+        <div class="npcTalkImg fl">
+            <img src="img/2.jpg" alt="头像">
+        </div>
+        <div class="npcTalk fl" >
+            <div class="npcTalkCon" >
+                欢迎报考南京师范大学！
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footerTalk clearFix">
+     <div class="left fl"></div>
+     <div class="center fl">
+         <input type="text" id="val" >
+     </div>
+    <div class="right fl textSent"onclick="sent()">发送</div>
+</div>
+</body>
+</html>
